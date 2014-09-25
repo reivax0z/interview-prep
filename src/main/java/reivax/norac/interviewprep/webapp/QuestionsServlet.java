@@ -18,7 +18,6 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class CountriesServlet
  */
-//@WebServlet(name="/PlacesList", urlPatterns={"/PlacesListAction", "/Home"})
 public class QuestionsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -48,19 +47,22 @@ public class QuestionsServlet extends HttpServlet {
 		List<String> questions = new ArrayList<String>();
 		questions.add("Why PwC?");
 		questions.add("Why Digital Change?");
-		questions.add("What is Consulting?");
-		questions.add("Any Etracurricular Activity?");
-		questions.add("Tell me a time you showed Leadership");
-		questions.add("What is your most recent major Achievement?");
-		questions.add("How did you manage a difficult Person?");
-		questions.add("Current News related to Digital Change?");
-		questions.add("Tell me a time you showed Courage");
+		questions.add("Why working in consulting?");
+		questions.add("How did you manage a difficult person?");
+		questions.add("Any extracurricular activity?");
+		questions.add("Current news related to Digital Change?");
+		questions.add("Where do you see yourself in 3 years from now?");
 		questions.add("What do you expect from the first year at PwC?");
-		questions.add("What core Value of PwC describes you the mot?");
+		questions.add("What core value of PwC describes you the most accurately?");
+		questions.add("What is your most recent major achievement?");
 		questions.add("What is your weakness?");
 		questions.add("What is your quality?");
-		questions.add("Give me an example of a tight relationship with your previous Employer?");
-		questions.add("Tell me about a Challenging situation you successfully Overtook");
+		questions.add("Give me an example of a tight relationship with your previous employer?");
+		questions.add("Tell me about a time you showed leadership");
+		questions.add("Tell me about a time you showed courage");
+		questions.add("Tell me about a challenging situation you successfully overtook");
+		questions.add("Tell me about a failure you faced. How did you fix it?");
+		questions.add("Tell me about a time when you worked under pressure?");
 		
 		Collections.shuffle(questions);
 		
