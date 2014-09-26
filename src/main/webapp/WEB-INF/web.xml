@@ -32,5 +32,15 @@
 		<servlet-name>UploadQuestions</servlet-name>
 		<url-pattern>/UploadQuestionsAction</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>DownloadSample</servlet-name>
+		<servlet-class>reivax.norac.interviewprep.webapp.DownloadServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>DownloadSample</servlet-name>
+		<url-pattern>/DownloadSampleAction</url-pattern>
+	</servlet-mapping>
 
 </web-app>

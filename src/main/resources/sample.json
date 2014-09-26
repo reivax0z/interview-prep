@@ -1,0 +1,8 @@
+[
+{"question": "What is your weakness?", "timeout": "60"}, 
+{"question": "Where do you see yourself in 3 years time?"},
+{"question": "Why did you choose our company?", "timeout": "120"},
+{"question": "What is your best quality?", "timeout": "60"},
+{"question": "Tell me about a time when you worked under pressure?"},
+{"question": "What is your most recent major achievement?", "timeout": "180"}
+]

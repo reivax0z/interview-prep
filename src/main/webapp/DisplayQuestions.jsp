@@ -122,17 +122,22 @@ Boolean uploadFail = (Boolean) request.getAttribute("upload-fail");
 								<label for="labelInputFile">File input</label> <input
 									type="file" id="inputFileQuestions" name="file">
 								<p class="help-block">
-									The file must be a JSON file. A sample content example is provided below:<br>
-									<code>
-										[<br>
-										{"question": "What is your weakness?","timeout": "60"}, <br>
-										{"question": "Where do you see yourself in 3 years time?"}
-										<br> ]
-									</code>
+									The file must be a JSON (.json) file. A sample content example is provided below:<br>
 								</p>
 								<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-upload"></span> Upload</button>
 							</div>
 					</form>
+					<hr>
+					<h2>Get a sample file here</h2>
+					<p>
+					<code>
+						[<br>
+						{"question": "What is your weakness?", "timeout": "60"}, <br>
+						{"question": "Where do you see yourself in 3 years time?"}
+						<br> ]
+					</code>
+					</p>
+					<a href="DownloadSampleAction"><button type="button" class="btn btn-info"><span class="glyphicon glyphicon-download"></span> Download Sample</button></a>
 				  </div>
 				</div>
 				<div class="col-md-6">
@@ -183,7 +188,6 @@ Boolean uploadFail = (Boolean) request.getAttribute("upload-fail");
 		            		<h2 id="time-left_<%=i %>">This question is not timed.</h2>
 		            	<%} else{%>
 		            		<h2 id="time-left_<%=i %>" style="display:none"></h2>
-<%-- 		            		<button type="button" class="btn btn-danger" id="start-timer-button_<%=i %>" onclick="startTimer(<%=q.getTimeout()%>)">Time Me!</button> --%>
 		              	<%} %>
 		              </div>
 		          </div>
@@ -191,7 +195,8 @@ Boolean uploadFail = (Boolean) request.getAttribute("upload-fail");
 	          <%
 	          }%>
 	          <div id="finished" class="col-sm-12" style="display:none">
-	          	<h1>You've finished the Interview Training!</h1>
+	          	<h1>Congratulations!</h1>
+	          	<h2>You've finished the Interview Training!</h2>
 	          	<a href="Home"><button type="button" class="btn btn-success"><span class="glyphicon glyphicon-repeat"></span> Do it Again!</button></a>
 	          </div>
         </div>
