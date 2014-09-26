@@ -22,9 +22,9 @@ Boolean uploadFail = (Boolean) request.getAttribute("upload-fail");
 	
 	<meta property="og:title" content="Interview Preparation - Upload and Rehearse" />
 	<meta property="og:type" content="website" />
-	<meta property="og:url" content="xaviertraveltips.herokuapp.com" />
+	<meta property="og:url" content="interview-preparation.herokuapp.com" />
 	<meta property="og:description" content="Interview Preparation - A web app providing interview rehearsal by letting users upload their own set of questions" />
-	<meta property="og:image" content="http://xavier.w.caron.free.fr/website/resources/img/weekend-planner/weekend-planner-app.png" />
+	<meta property="og:image" content="http://xavier.w.caron.free.fr/website/resources/img/interview-preparation/interview-preparation-app.png" />
 	<meta property="og:image:type" content="image/jpeg" />
 	<meta property="og:image:width" content="150" />
 	<meta property="og:image:height" content="150" />
@@ -33,12 +33,12 @@ Boolean uploadFail = (Boolean) request.getAttribute("upload-fail");
 	<meta name="twitter:title" content="Interview Preparation - Upload and Rehearse" />
 	<meta name="twitter:description" content="Interview Preparation - A web app providing interview rehearsal by letting users upload their own set of questions" />
 	<meta name="twitter:creator" content="@Xavier_w_Caron" />
-	<meta name="twitter:image:src" content="http://xavier.w.caron.free.fr/website/resources/img/weekend-planner/weekend-planner-app.png" />
+	<meta name="twitter:image:src" content="http://xavier.w.caron.free.fr/website/resources/img/interview-preparation/interview-preparation-app.png" />
 	<meta name="twitter:image:width" content="150" />
 	<meta name="twitter:image:height" content="150" />
 	
 	
-    <!-- <link rel="shortcut icon" href="http://xavier.w.caron.free.fr/website/resources/img/weekend-planner/weekend-planner-app.ico">-->
+    <link rel="shortcut icon" href="http://xavier.w.caron.free.fr/website/resources/img/interview-preparation/interview-preparation-app.ico">
 
 
 	<title>Interview Preparation</title>
