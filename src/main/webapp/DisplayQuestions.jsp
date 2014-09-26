@@ -11,7 +11,6 @@
 List<Entry> questions = (List<Entry>) request.getAttribute("questions");
 Boolean uploadSuccess = (Boolean) request.getAttribute("upload-success");
 Boolean uploadFail = (Boolean) request.getAttribute("upload-fail");
-int total = questions.size();
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -166,7 +165,7 @@ int total = questions.size();
 				</div>
 			</div>
           <%
-	          for(int i=0; i<total; i++){
+	          for(int i=0; i<questions.size(); i++){
 	        	  Entry q = questions.get(i);
 	          %>
 	            <div id="question_<%=i %>" style="display:none">
