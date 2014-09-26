@@ -163,8 +163,10 @@ Boolean uploadFail = (Boolean) request.getAttribute("upload-fail");
 						</p>
 					</div>
 					<%} %>
-					<h1>Ready for the Interview Training?</h1>
-					<button type="button" class="btn btn-success" onclick="showNextQuestion(-1);"><span class="glyphicon glyphicon-ok"></span> Let's Start!</button>
+					<h1>Everything set? <span class="glyphicon glyphicon-ok"></span></h1>
+					<hr>
+					<h2>Ready for the Interview Training? <span class="glyphicon glyphicon-ok"></span> </h2>
+					<button type="button" class="btn btn-success" onclick="showNextQuestion(-1);"><span class="glyphicon glyphicon-play-circle"></span> Let's Start!</button>
 				</div>
 			</div>
           <%
@@ -195,8 +197,10 @@ Boolean uploadFail = (Boolean) request.getAttribute("upload-fail");
 	          <%
 	          }%>
 	          <div id="finished" class="col-sm-12" style="display:none">
-	          	<h1>Congratulations!</h1>
+	          	<h1><span class="glyphicon glyphicon-thumbs-up"></span> Congratulations!</h1>
+	          	<hr>
 	          	<h2>You've finished the Interview Training!</h2>
+	          	<h2>Think you can do better?</h2>
 	          	<a href="Home"><button type="button" class="btn btn-success"><span class="glyphicon glyphicon-repeat"></span> Do it Again!</button></a>
 	          </div>
         </div>
