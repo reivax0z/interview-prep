@@ -44,26 +44,32 @@ public class QuestionsServlet extends HttpServlet {
 
 	private void processData(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		List<String> questions = new ArrayList<String>();
-		questions.add("Why PwC?");
-		questions.add("Why Digital Change?");
-		questions.add("Why working in consulting?");
-		questions.add("How did you manage a difficult person?");
-		questions.add("Any extracurricular activity?");
-		questions.add("Current news related to Digital Change?");
-		questions.add("Where do you see yourself in 3 years from now?");
-		questions.add("What do you expect from the first year at PwC?");
-		questions.add("What core value of PwC describes you the most accurately?");
-		questions.add("What is your most recent major achievement?");
-		questions.add("What is your weakness?");
-		questions.add("What is your quality?");
-		questions.add("Give me an example of a tight relationship with your previous employer?");
-		questions.add("Tell me about a time you showed leadership");
-		questions.add("Tell me about a time you showed courage");
-		questions.add("Tell me about a challenging situation you successfully overtook");
-		questions.add("Tell me about a failure you faced. How did you fix it?");
-		questions.add("Tell me about a time when you worked under pressure?");
+		if(Model.getInstance().getCurrentQuestionsList() == null 
+				|| Model.getInstance().getCurrentQuestionsList().isEmpty()){
 		
+			List<Entry> questions = new ArrayList<Entry>();
+			questions.add(new Entry("Why PwC?", 20));
+			questions.add(new Entry("Why Digital Change?"));
+			questions.add(new Entry("Why working in consulting?"));
+			questions.add(new Entry("How did you manage a difficult person?", 30));
+			questions.add(new Entry("Any extracurricular activity?"));
+			questions.add(new Entry("Current news related to Digital Change?"));
+			questions.add(new Entry("Where do you see yourself in 3 years from now?"));
+			questions.add(new Entry("What do you expect from the first year at PwC?"));
+			questions.add(new Entry("What core value of PwC describes you the most accurately?", 25));
+			questions.add(new Entry("What is your most recent major achievement?"));
+			questions.add(new Entry("What is your weakness?"));
+			questions.add(new Entry("What is your quality?"));
+			questions.add(new Entry("Give me an example of a tight relationship with your previous employer?"));
+			questions.add(new Entry("Tell me about a time you showed leadership"));
+			questions.add(new Entry("Tell me about a time you showed courage"));
+			questions.add(new Entry("Tell me about a challenging situation you successfully overtook", 25));
+			questions.add(new Entry("Tell me about a failure you faced. How did you fix it?"));
+			questions.add(new Entry("Tell me about a time when you worked under pressure?"));
+			Model.getInstance().setCurrentQuestionsList(questions);
+		}
+		
+		List<Entry> questions = Model.getInstance().getCurrentQuestionsList();
 		Collections.shuffle(questions);
 		
 		// Forward the info to the appropriate JSP

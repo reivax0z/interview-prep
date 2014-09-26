@@ -1,3 +1,4 @@
+<%@page import="javax.faces.component.UpdateModelException"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 
@@ -7,7 +8,9 @@
 
 <%
 // RETRIEVE THE MAIN OBJECT
-List<String> questions = (List<String>) request.getAttribute("questions");
+List<Entry> questions = (List<Entry>) request.getAttribute("questions");
+Boolean uploadSuccess = (Boolean) request.getAttribute("upload-success");
+Boolean uploadFail = (Boolean) request.getAttribute("upload-fail");
 int total = questions.size();
 %>
 
@@ -54,8 +57,27 @@ int total = questions.size();
     <!-- BOOTSTRAP -->
     <script type="text/javascript" src="./bootstrap-3.2.0/dist/js/bootstrap.js"></script>    
     
+    <script type="text/javascript">
+		var questionsJ = new Array();
+		var timeoutsJ = new Array();
+	</script>
+	
+	<%
+	if(questions != null){
+		for(int i=0; i<questions.size(); i++){
+			Entry e = questions.get(i);
+			String ques = e.getQuestion();
+			long time = e.getTimeout();
+			%>
+			<script type="text/javascript">questionsJ.push("<%=ques%>");</script>
+			<script type="text/javascript">timeoutsJ.push(<%=time%>);</script>
+			<%
+		}
+	}%>
+    
     <!-- MY JS FILES -->
     <script type="text/javascript" src="./bootstrap-3.2.0/js/questionshelper.js"></script>
+    <script type="text/javascript" src="./bootstrap-3.2.0/js/formchecker.js"></script>
     
 </head>
 <body>
@@ -79,7 +101,7 @@ int total = questions.size();
       if(questions != null){
    	  %>
 
-	  <div class="row">
+	  <div class="row" id="progress-div" style="display:none">
 		  <div class="col-sm-12">
 			  <div class="progress">
 				  <div id="progress-bar" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
@@ -93,14 +115,15 @@ int total = questions.size();
 	  		<div id=starting>
 				<div class="col-md-6">
 		          <div class="shadow padding20">
-					<h1>Upload my own set of questions</h1>
+		          	<h1><span class="glyphicon glyphicon-cog"></span> Personalise</h1>
 					<hr>
-					<form role="form" action="" id="upload_form"
+					<h2>Upload your own set of questions</h2>
+					<form role="form" action="UploadQuestionsAction" id="upload_form"
 							name="upload_form" method="post" enctype="multipart/form-data" 
 							onsubmit="return(validateUploadForm());">
 							<div class="form-group">
 								<label for="labelInputFile">File input</label> <input
-									type="file" id="inputFileCompare" name="file">
+									type="file" id="inputFileQuestions" name="file">
 								<p class="help-block">
 									The file must be a JSON file. A sample content example is provided below:<br>
 									<code>
@@ -112,40 +135,59 @@ int total = questions.size();
 								</p>
 								<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-upload"></span> Upload</button>
 							</div>
-							<div id="error_form_compare" class="alert alert-warning" role="alert"
-							style="display: none">
-								<p>
-									<strong>Oh snap!</strong> Invalid form format, verify 
-									that the file you try to upload is a JSON file.
-								</p>
-							</div>
 					</form>
 				  </div>
 				</div>
 				<div class="col-md-6">
+					<div id="error_form_upload" class="alert alert-warning" role="alert"
+					style="display: none">
+						<p>
+							<strong>Oh snap!</strong> Invalid form format, verify 
+							that the file you try to upload is a JSON file.
+						</p>
+					</div>
+					<%if(uploadFail != null && uploadFail){ %>
+					<div id="upload_fail" class="alert alert-danger" role="alert">
+						<p>
+							<strong>Oh snap!</strong> Invalid form format, verify 
+							that the file you try to upload is a JSON file.
+						</p>
+					</div>
+					<%} else if(uploadSuccess != null && uploadSuccess){ %>
+					<div id="upload_success" class="alert alert-success" role="alert">
+						<p>
+							<strong>Uploaded!</strong> Your questions have been successfully uploaded 
+							in the system.
+						</p>
+					</div>
+					<%} %>
 					<h1>Ready for the Interview Training?</h1>
-					<button type="button" class="btn btn-success" onclick="showFirstQuestion(<%=total%>);"><span class="glyphicon glyphicon-ok"></span> Let's Start!</button>
+					<button type="button" class="btn btn-success" onclick="showNextQuestion(-1);"><span class="glyphicon glyphicon-ok"></span> Let's Start!</button>
 				</div>
 			</div>
           <%
 	          for(int i=0; i<total; i++){
-	        	  String q = questions.get(i);
+	        	  Entry q = questions.get(i);
 	          %>
 	            <div id="question_<%=i %>" style="display:none">
 	              <div class="col-sm-8">
 		              <div class="shadow padding20">
 		                <h1><span class="glyphicon glyphicon-question-sign"></span> Question n°<%=i+1 %></h1>
 		              	<hr>
-		              	<h2><%=q %></h2>
-	            		<button type="button" class="btn btn-default" id="next-button_<%=i %>" onclick="showNextQuestion(<%=i %>, <%=total %>)">Next</button>
+		              	<h2><%=q.getQuestion() %></h2>
+	            		<button type="button" class="btn btn-default" id="next-button_<%=i %>" onclick="showNextQuestion(<%=i %>)">Next</button>
 		              </div>
 	              </div>
 	              <div class="col-sm-4">
 		              <div class="shadow padding20">
 		              	<h1 style="text-align:center"><span class="glyphicon glyphicon-time"></span> Time Left</h1>
 		              	<hr>
-	            		<h2 id="time-left_<%=i %>">This question is not timed.</h2>
-	            		<button type="button" class="btn btn-danger" id="start-timer-button_<%=i %>" onclick="startTimer(60)">Time Me!</button>
+		              	<%if(q.getTimeout() <= 0){ %>
+		            		<h2 id="time-left_<%=i %>">This question is not timed.</h2>
+		            	<%} else{%>
+		            		<h2 id="time-left_<%=i %>" style="display:none"></h2>
+<%-- 		            		<button type="button" class="btn btn-danger" id="start-timer-button_<%=i %>" onclick="startTimer(<%=q.getTimeout()%>)">Time Me!</button> --%>
+		              	<%} %>
 		              </div>
 		          </div>
 	            </div>
