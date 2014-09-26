@@ -1,14 +1,10 @@
 package reivax.norac.interviewprep.webapp;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URISyntaxException;
-import java.net.URL;
-import java.nio.file.Paths;
 
 import javax.servlet.http.HttpServletResponse;
 
