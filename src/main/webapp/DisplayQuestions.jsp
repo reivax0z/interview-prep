@@ -112,7 +112,7 @@ Boolean uploadFail = (Boolean) request.getAttribute("upload-fail");
 	  		<div id=starting>
 				<div class="col-md-6">
 		          <div class="shadow padding20">
-		          	<h1><span class="glyphicon glyphicon-cog"></span> Personalise</h1>
+		          	<h1><span class="glyphicon glyphicon-cog"></span> Step 1: Personalise</h1>
 					<hr>
 					<h2>Upload your own set of questions</h2>
 					<form role="form" action="UploadQuestionsAction" id="upload_form"
@@ -122,7 +122,10 @@ Boolean uploadFail = (Boolean) request.getAttribute("upload-fail");
 								<label for="labelInputFile">File input</label> <input
 									type="file" id="inputFileQuestions" name="file">
 								<p class="help-block">
-									The file must be a JSON (.json) file. A sample content example is provided below:<br>
+									The file must be a JSON (.json) file. <br>
+									Not sure what that is? No worries, a sample file is provided below.<br>
+									Download it, modify it to match your expectations and upload it back!<br>
+									YES, it's THAT simple!
 								</p>
 								<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-upload"></span> Upload</button>
 							</div>
@@ -163,8 +166,9 @@ Boolean uploadFail = (Boolean) request.getAttribute("upload-fail");
 						</p>
 					</div>
 					<%} %>
-					<h1>Everything set? <span class="glyphicon glyphicon-ok"></span></h1>
+					<h1><span class="glyphicon glyphicon-play"></span> Step 2: Jump!</h1>
 					<hr>
+					<h2>Everything set? <span class="glyphicon glyphicon-ok"></span></h2>
 					<h2>Ready for the Interview Training? <span class="glyphicon glyphicon-ok"></span> </h2>
 					<button type="button" class="btn btn-success" onclick="showNextQuestion(-1);"><span class="glyphicon glyphicon-play-circle"></span> Let's Start!</button>
 				</div>
