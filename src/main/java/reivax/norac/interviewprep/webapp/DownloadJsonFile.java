@@ -27,21 +27,20 @@ public class DownloadJsonFile {
 		String fileName = "sample.json";
         String fileType = "json";
 
-		URL resource = this.getClass().getResource(filePath + File.separator
+		InputStream is = this.getClass().getResourceAsStream(filePath + File.separator
 				+ fileName);
-		File my_file = Paths.get(resource.toURI()).toFile();
+//		File my_file = Paths.get(resource.toURI()).toFile(); // Java 1.7
         response.setContentType(fileType);
 
         response.setHeader("Content-disposition","attachment; filename="+fileName);
 
         OutputStream out = response.getOutputStream();
-        FileInputStream in = new FileInputStream(my_file);
         byte[] buffer = new byte[4096];
         int length;
-        while ((length = in.read(buffer)) > 0){
+        while ((length = is.read(buffer)) > 0){
            out.write(buffer, 0, length);
         }
-        in.close();
+        is.close();
         out.flush();
 	}
 }
