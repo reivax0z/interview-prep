@@ -119,8 +119,7 @@ Boolean uploadFail = (Boolean) request.getAttribute("upload-fail");
 							name="upload_form" method="post" enctype="multipart/form-data" 
 							onsubmit="return(validateUploadForm());">
 							<div class="form-group">
-								<label for="labelInputFile">File input</label> <input
-									type="file" id="inputFileQuestions" name="file">
+								<input type="file" id="inputFileQuestions" name="file">
 								<p class="help-block">
 									The file must be a JSON (.json) file. <br>
 									Not sure what that is? No worries, a sample file is provided below.<br>
