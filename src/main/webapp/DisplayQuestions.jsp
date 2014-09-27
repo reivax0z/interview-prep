@@ -125,7 +125,7 @@ Boolean uploadFail = (Boolean) request.getAttribute("upload-fail");
 									The file must be a JSON (.json) file. <br>
 									Not sure what that is? No worries, a sample file is provided below.<br>
 									Download it, modify it to match your expectations and upload it back!<br>
-									YES, it's THAT simple!
+									Yes, it's THAT simple!
 								</p>
 								<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-upload"></span> Upload</button>
 							</div>
@@ -188,7 +188,7 @@ Boolean uploadFail = (Boolean) request.getAttribute("upload-fail");
 	              </div>
 	              <div class="col-sm-4">
 		              <div class="shadow padding20">
-		              	<h1 style="text-align:center"><span class="glyphicon glyphicon-time"></span> Time Left</h1>
+		              	<h1><span class="glyphicon glyphicon-time"></span> Time Left</h1>
 		              	<hr>
 		              	<%if(q.getTimeout() <= 0){ %>
 		            		<h2 id="time-left_<%=i %>">This question is not timed.</h2>
@@ -214,6 +214,9 @@ Boolean uploadFail = (Boolean) request.getAttribute("upload-fail");
        <hr>
 
       <footer>
+      	<p>
+			Design adapted from <i>Bootstrap</i>.
+		</p>
         <p class="pull-right"><a href="#"><span style="font-size:30px" class="glyphicon glyphicon-chevron-up"></span></a></p>
         <p>© <a href="http://www.linkedin.com/in/xavierwilfriddimitrycaron" target="_blank"><b>Xavier CARON</b></a>, 2014</p>
       </footer>
